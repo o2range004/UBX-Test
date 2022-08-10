@@ -11,6 +11,7 @@ class InputField extends StatelessWidget {
   final bool isAHiddenField;
   final VoidCallback? toggleShowPassword;
   var inputFormatterHandler;
+  final TextInputType textxInputType;
 
   InputField(
       this.labelText,
@@ -18,6 +19,7 @@ class InputField extends StatelessWidget {
       this.inputController,
       this.validateHandler,
       this.inputFormatterHandler,
+      this.textxInputType,
       this.isObscure,
       this.isAHiddenField,
       [this.toggleShowPassword]);
@@ -46,6 +48,7 @@ class InputField extends StatelessWidget {
             validator: validateHandler,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             inputFormatters: inputFormatterHandler,
+            keyboardType: textxInputType,
             minLines: 1,
             obscureText: isObscure,
             decoration: InputDecoration(

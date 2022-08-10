@@ -43,22 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  String? validateEmail(value) {
-    if (value != null && value.isNotEmpty && value.contains("@")) {
-      return null;
-    } else {
-      return "Invalid Email";
-    }
-  }
-
-  String? validatePassword(value) {
-    if (value != null && value.isNotEmpty) {
-      return null;
-    } else {
-      return "This field is required";
-    }
-  }
-
   toggleShowPassword() {
     setState(() {
       isPasswordHidden = !isPasswordHidden;
@@ -88,8 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 LoginForm(
                   emailController,
                   passwordController,
-                  validateEmail,
-                  validatePassword,
                   toggleShowPassword,
                   isPasswordHidden,
                 ),

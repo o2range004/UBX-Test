@@ -8,8 +8,6 @@ class LoginForm extends StatelessWidget {
   //const LoginForm({Key? key}) : super(key: key);
   final TextEditingController emailController;
   final TextEditingController passwordController;
-  final String? Function(String? value) validateEmail;
-  final String? Function(String? value) validatePassword;
   final VoidCallback toggleShowPassword;
   final bool isPasswordHidden;
   final bool isaHiddenField = true;
@@ -17,16 +15,33 @@ class LoginForm extends StatelessWidget {
   final TextInputFormatter singleLineFormatter = FilteringTextInputFormatter.deny('\n');
   final TextInputFormatter passwordFormatter = FilteringTextInputFormatter.deny(RegExp(r"[$&+,:;=?@#|'<>^]"));
 
-
-  
   LoginForm(
     this.emailController,
     this.passwordController,
-    this.validateEmail,
-    this.validatePassword,
     this.toggleShowPassword,
     this.isPasswordHidden,
   );
+
+   String? validateEmail(value) {
+    const String pattern =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?)*$";
+        RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty || !regex.hasMatch(value)){
+        return 'Invalid Email'; 
+    }else{
+        return null;
+    } 
+  }
+
+  String? validatePassword(value) {
+    if (value != null && value.isNotEmpty) {
+      return null;
+    } else {
+      return "This field is required";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +62,7 @@ class LoginForm extends StatelessWidget {
                   emailController,
                   validateEmail,
                   [singleLineFormatter],
+                  TextInputType.emailAddress,
                   false,
                   !isaHiddenField,
                 ),
@@ -56,6 +72,7 @@ class LoginForm extends StatelessWidget {
                   passwordController,
                   validatePassword,
                   [passwordFormatter],
+                  TextInputType.text,
                   isPasswordHidden,
                   isaHiddenField,
                   toggleShowPassword,
