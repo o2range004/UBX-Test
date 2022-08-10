@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_page_app/constants.dart';
+import 'package:login_page_app/screens/login_screen.dart';
 
 class RedirectScreen extends StatelessWidget {
   //const RedirectScreen({Key? key}) : super(key: key)
@@ -16,7 +18,23 @@ class RedirectScreen extends StatelessWidget {
         width: double.infinity,
         height: 200,
         padding: const EdgeInsets.all(20),
-        child: Text("Redirect from `$textHandler`"),
+        child: Column(
+          children: [
+            Text("Redirect from `$textHandler`"),
+            const Spacer(),
+            TextButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                ),
+                child: const Text(
+                  'Back to Login',
+                  style: TextStyle(color: buttonPrimaryColor),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

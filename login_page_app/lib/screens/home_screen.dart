@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_page_app/constants.dart';
+import 'package:login_page_app/screens/login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   //const HomeScreen({Key? key}) : super(key: key);
@@ -39,6 +41,18 @@ class HomeScreen extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w400,
+                ),
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
+                ),
+                child: const Text(
+                  'Back to Login',
+                  style: TextStyle(color: buttonPrimaryColor),
                 ),
               ),
             ],
