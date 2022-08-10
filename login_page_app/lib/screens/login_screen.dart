@@ -17,8 +17,13 @@ class _LoginScreenState extends State<LoginScreen> {
   late String passwordInput;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  var isPasswordHidden = true;
+  late bool isPasswordHidden;
 
+  @override
+  void initState() {
+    super.initState();
+    isPasswordHidden = true;
+  }
 
   void doLogin() {
     final isFormValid = formKey.currentState!.validate();
@@ -48,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void toggleShowPassword() {
+  toggleShowPassword() {
     setState(() {
       isPasswordHidden = !isPasswordHidden;
     });
@@ -56,38 +61,40 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/login_background_img.png"),
-            fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/login_background_img.png"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Form(
-          key: formKey,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              LoginForm(
-                emailController,
-                passwordController,
-                validateEmail,
-                validatePassword,
-                isPasswordHidden,
-                toggleShowPassword,
-              ),
-              Column(
-                children: [
-                  TextLink("I don't have an account"),
-                  FormButton("Login", doLogin),
-                ],
-              )
-            ],
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                LoginForm(
+                  emailController,
+                  passwordController,
+                  validateEmail,
+                  validatePassword,
+                  toggleShowPassword,
+                  isPasswordHidden,
+                ),
+                Column(
+                  children: [
+                    TextLink("I don't have an account"),
+                    FormButton("Login", doLogin),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
