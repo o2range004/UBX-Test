@@ -28,12 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
   void doLogin() {
     final isFormValid = formKey.currentState!.validate();
     if (isFormValid) {
-      /*Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) =>
-              HomeScreen(emailController.text, passwordController.text),
-        ),
-      );*/
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -42,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
           (route) => false);
     }
   }
+
 
   toggleShowPassword() {
     setState(() {

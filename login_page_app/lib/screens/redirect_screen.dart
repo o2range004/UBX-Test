@@ -6,7 +6,7 @@ class RedirectScreen extends StatelessWidget {
   //const RedirectScreen({Key? key}) : super(key: key)
   final String textHandler;
 
-  RedirectScreen(this.textHandler);
+  const RedirectScreen(this.textHandler);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class RedirectScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text("Redirect from `$textHandler`"),
+            const Text("Redirect"),
             const Spacer(),
             TextButton(
                 onPressed: () => Navigator.of(context).push(

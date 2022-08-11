@@ -10,19 +10,32 @@ class InputField extends StatelessWidget {
   final bool isObscure;
   final bool isAHiddenField;
   final VoidCallback? toggleShowPassword;
-  var inputFormatterHandler;
+  final inputFormatterHandler;
   final TextInputType textxInputType;
+  final bool isCursorshown;
+  final bool isReadOnly;
+  final FocusNode? focusNodeHandler;
+  final int? maxLinesHandler;
+  final bool? isEnabled;
 
-  InputField(
-      this.labelText,
-      this.hintTextHandler,
-      this.inputController,
-      this.validateHandler,
-      this.inputFormatterHandler,
-      this.textxInputType,
-      this.isObscure,
-      this.isAHiddenField,
-      [this.toggleShowPassword]);
+  const InputField({
+    Key? key,
+    required this.labelText,
+    required this.hintTextHandler,
+    required this.inputController, 
+    required this.validateHandler,
+     this.inputFormatterHandler,
+     required this.textxInputType,
+     required this.isObscure,
+     required this.isAHiddenField,
+     required this.isCursorshown,
+     required this.isReadOnly,
+     this.focusNodeHandler,
+     this.toggleShowPassword,
+     this.maxLinesHandler,
+     this.isEnabled,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +63,12 @@ class InputField extends StatelessWidget {
             inputFormatters: inputFormatterHandler,
             keyboardType: textxInputType,
             minLines: 1,
+            maxLines: maxLinesHandler,
             obscureText: isObscure,
+            showCursor: isCursorshown,
+            readOnly: isReadOnly,
+            focusNode: focusNodeHandler,
+            enabled: isEnabled,
             decoration: InputDecoration(
               fillColor: const Color(0xFF1A1E1E),
               filled: true,

@@ -11,9 +11,12 @@ class LoginForm extends StatelessWidget {
   final VoidCallback toggleShowPassword;
   final bool isPasswordHidden;
   final bool isaHiddenField = true;
-  final TextInputFormatter alphabetsOnly = FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')); 
-  final TextInputFormatter singleLineFormatter = FilteringTextInputFormatter.deny('\n');
-  final TextInputFormatter passwordFormatter = FilteringTextInputFormatter.deny(RegExp(r"[$&+,:;=?@#|'<>^]"));
+  final TextInputFormatter alphabetsOnly =
+      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]'));
+  final TextInputFormatter singleLineFormatter =
+      FilteringTextInputFormatter.deny('\n');
+  final TextInputFormatter passwordFormatter =
+      FilteringTextInputFormatter.deny(RegExp(r"[$&+,:;=?@#|'<>^]"));
 
   LoginForm(
     this.emailController,
@@ -22,17 +25,17 @@ class LoginForm extends StatelessWidget {
     this.isPasswordHidden,
   );
 
-   String? validateEmail(value) {
+  String? validateEmail(value) {
     const String pattern =
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?)*$";
-        RegExp regex = RegExp(pattern);
-    if (value == null || value.isEmpty || !regex.hasMatch(value)){
-        return 'Invalid Email'; 
-    }else{
-        return null;
-    } 
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty || !regex.hasMatch(value)) {
+      return 'Invalid Email';
+    } else {
+      return null;
+    }
   }
 
   String? validatePassword(value) {
@@ -57,27 +60,33 @@ class LoginForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 InputField(
-                  "Your Email",
-                  "Email Address",
-                  emailController,
-                  validateEmail,
-                  [singleLineFormatter],
-                  TextInputType.emailAddress,
-                  false,
-                  !isaHiddenField,
+                  labelText: "Your Email",
+                  hintTextHandler: "Email Address",
+                  inputController: emailController,
+                  validateHandler: validateEmail,
+                  inputFormatterHandler: [singleLineFormatter],
+                  textxInputType: TextInputType.emailAddress,
+                  isObscure: false,
+                  isAHiddenField: !isaHiddenField,
+                  isCursorshown: true,
+                  isReadOnly: false,
+                  maxLinesHandler: 1,
                 ),
                 InputField(
-                  "Password",
-                  "Password",
-                  passwordController,
-                  validatePassword,
-                  [passwordFormatter],
-                  TextInputType.text,
-                  isPasswordHidden,
-                  isaHiddenField,
-                  toggleShowPassword,
-                  
+                  labelText: "Password",
+                  hintTextHandler: "Password",
+                  inputController: passwordController,
+                  validateHandler: validatePassword,
+                  inputFormatterHandler: [passwordFormatter],
+                  textxInputType: TextInputType.text,
+                  isObscure: isPasswordHidden,
+                  isAHiddenField: isaHiddenField,
+                  isCursorshown: true,
+                  isReadOnly: false,
+                  toggleShowPassword: toggleShowPassword,
+                  maxLinesHandler: 1,
                 ),
+                
                 TextLink("Forgot Password?"),
               ],
             ),
