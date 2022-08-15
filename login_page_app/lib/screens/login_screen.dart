@@ -31,12 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  HomeScreen(emailController.text, passwordController.text)),
+            builder: (context) => HomeScreen(
+              emailInput: emailController.text,
+              passwordInput: passwordController.text,
+            ),
+          ),
           (route) => false);
     }
   }
-
 
   toggleShowPassword() {
     setState(() {
@@ -72,8 +74,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Column(
                   children: [
-                    TextLink("I don't have an account"),
-                    FormButton("Login", doLogin),
+                    const TextLink(textHandler: "I don't have an account"),
+                    FormButton(
+                        buttonText: "Login",
+                        clickhandler: doLogin,
+                        height: 60,
+                        width: double.infinity),
                   ],
                 )
               ],

@@ -59,7 +59,6 @@ class CustomKeyboard extends StatelessWidget {
     return Container(
       height: 160,
       width: double.infinity,
-      //constraints: BoxConstraints(maxWidth: 500),
       color: Color(0xFF252526),
       child: Column(
         children: [

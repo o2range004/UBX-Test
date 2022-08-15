@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:login_page_app/constants.dart';
 
 class FormButton extends StatelessWidget {
-  //const FormButton{Key? key}) : super(key: key);
   final String buttonText;
   final VoidCallback clickhandler;
+  final double height;
+  final double width;
 
-  FormButton(this.buttonText, this.clickhandler);
+  const FormButton({
+    Key? key,
+    required this.buttonText,
+    required this.clickhandler,
+    required this.height,
+    required this.width,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 27),
-      width: double.infinity,
-      height: 60,
+      width: width,
+      height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: buttonPrimaryColor,

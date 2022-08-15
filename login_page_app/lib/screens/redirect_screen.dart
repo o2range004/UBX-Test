@@ -3,10 +3,11 @@ import 'package:login_page_app/constants.dart';
 import 'package:login_page_app/screens/login_screen.dart';
 
 class RedirectScreen extends StatelessWidget {
-  //const RedirectScreen({Key? key}) : super(key: key)
+  
   final String textHandler;
 
-  const RedirectScreen(this.textHandler);
+  const RedirectScreen({Key? key, required this.textHandler}) : super(key: key);
+  //const RedirectScreen(this.textHandler);
 
   @override
   Widget build(BuildContext context) {

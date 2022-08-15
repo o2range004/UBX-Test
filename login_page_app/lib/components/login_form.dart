@@ -87,7 +87,7 @@ class LoginForm extends StatelessWidget {
                   maxLinesHandler: 1,
                 ),
                 
-                TextLink("Forgot Password?"),
+                const TextLink(textHandler: "Forgot Password?"),
               ],
             ),
           ),

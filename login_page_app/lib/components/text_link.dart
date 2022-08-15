@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:login_page_app/screens/redirect_screen.dart';
+
 class TextLink extends StatelessWidget {
   final String textHandler;
 
-  TextLink(this.textHandler,);
+  
+  const TextLink({Key? key, required this.textHandler}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,11 @@ class TextLink extends StatelessWidget {
         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
       ),
       onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => RedirectScreen(textHandler)),
+        MaterialPageRoute(
+          builder: (context) => RedirectScreen(
+            textHandler: textHandler,
+          ),
+        ),
       ),
     );
   }
