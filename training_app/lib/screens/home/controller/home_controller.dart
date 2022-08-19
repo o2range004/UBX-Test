@@ -6,7 +6,15 @@ import 'package:training_app/routes/route_list.dart';
 class HomeController extends GetxController{
   final email = Get.arguments['email'];
   final password = Get.arguments['password'];
-
+  /*String email = "";
+  String password = "";
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    email = Get.arguments['email'];
+    password = Get.arguments['password'];
+    super.onInit();
+  }*/
   void goToKeyboardExercise(){
     Get.toNamed(RouteList.KEYBOARD);
   }

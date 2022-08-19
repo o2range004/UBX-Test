@@ -4,8 +4,16 @@ import 'package:get/state_manager.dart';
 class KeyboardController extends GetxController {
   final textFieldController = TextEditingController();
   late FocusNode messageFocusNode = FocusNode();
-  RxBool isKeyboardShown = false.obs;
+  //RxBool isKeyboardShown = false.obs;
+  late RxBool isKeyboardShown;
   RxBool isKeyboardLowerCase = true.obs;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    isKeyboardShown = false.obs;
+    super.onInit();
+  }
 
   void toggleKeyboard() {
     isKeyboardShown.value = !isKeyboardShown.value;

@@ -9,7 +9,7 @@ import 'package:training_app/routes/route_list.dart';
 
 class LoginController extends GetxController{
   var formKey = GlobalKey<FormState>();
-
+  late bool isFormValid;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final TextInputFormatter alphabetsOnly =
@@ -19,8 +19,16 @@ class LoginController extends GetxController{
   final TextInputFormatter passwordFormatter =
       FilteringTextInputFormatter.deny(RegExp(r"[$&+,:;=?@#|'<>^]"));
 
-  RxBool isAHiddenField = true.obs;
-  RxBool isPasswordHidden = true.obs;
+  //RxBool isAHiddenField = true.obs;
+  bool isAHiddenField = true;
+  late RxBool isPasswordHidden;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    isPasswordHidden = true.obs;
+    super.onInit();
+  }
 
   String? validateEmail(value) {
     const String pattern =
@@ -47,9 +55,13 @@ class LoginController extends GetxController{
     isPasswordHidden.value = !isPasswordHidden.value;
   }
   void doLogin() {
-    final isFormValid = formKey.currentState!.validate();
+    //final isFormValid = formKey.currentState!.validate();
+    //isFormValid = formKey.currentState!.validate();
+    isFormValid = formKey.currentState?.validate() ?? false;
     if (isFormValid) {
       Get.offAndToNamed(RouteList.HOME, arguments: {"email" : emailController.text, "password" : passwordController.text});
+    }else{
+      print('login fail');  
     }
   }
 }

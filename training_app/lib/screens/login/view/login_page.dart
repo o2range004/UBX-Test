@@ -39,13 +39,13 @@ class LoginPage extends GetView<LoginController> {
                     children: [
                       InputField(
                         labelText: "Your email",
-                        hintTextHandler: "Emai Address",
+                        hintTextHandler: "Email Address",
                         inputController: controller.emailController,
                         inputFormatterHandler: [controller.singleLineFormatter],
                         validateHandler: controller.validateEmail,
                         textxInputType: TextInputType.emailAddress,
                         isObscure: false,
-                        isAHiddenField: !controller.isAHiddenField.value,
+                        isAHiddenField: !controller.isAHiddenField,
                         isCursorshown: true,
                         isReadOnly: false,
                         maxLinesHandler: 1,
@@ -60,24 +60,31 @@ class LoginPage extends GetView<LoginController> {
                             ],
                             textxInputType: TextInputType.text,
                             isObscure: controller.isPasswordHidden.value,
-                            isAHiddenField: controller.isAHiddenField.value,
+                            isAHiddenField: controller.isAHiddenField,
                             //isAHiddenField: false,
                             isCursorshown: true,
                             isReadOnly: false,
                             toggleShowPassword: controller.toggleShowPassword,
                             maxLinesHandler: 1,
                           )),
-                      const TextLink(textHandler: "Forgot Password?")
+                      const TextLink(textHandler: "Forgot Password?"),
                     ],
                   ),
-                )
+                ),
+                //Expanded(child: child)
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.only(bottom: 80),
+                    width: double.infinity,
+                    child: const TextLink(textHandler: "I don\'t have an account"),
+                  ),
+                ),
               ],
             ),
           ),
         ),
-        bottomSheet: 
-      
-        FormButton(
+        bottomSheet: FormButton(
           buttonText: "Login",
           clickhandler: controller.doLogin,
           height: 60,
@@ -91,11 +98,12 @@ class LoginPage extends GetView<LoginController> {
 Container loginBanner() {
   return Container(
     width: double.infinity,
-    height: 100,
+    height: 108,
     padding: const EdgeInsets.only(left: 30, right: 30, top: 23, bottom: 23),
+    margin: const EdgeInsets.only(top: 200),
     color: const Color(0xFF121515),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text(
@@ -113,5 +121,4 @@ Container loginBanner() {
     ),
   );
 }
-
 
