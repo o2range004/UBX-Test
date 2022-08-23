@@ -20,9 +20,11 @@ class _TrainingAppState extends State<TrainingApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Flutter Training App",
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: primaryColor,
       ),
+
       getPages: Routes.routes,
       initialRoute: RouteList.LOGIN,
     );

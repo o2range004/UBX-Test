@@ -3,16 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:training_app/screens/home/controller/home_controller.dart';
 
 import 'package:training_app/screens/login/controller/login_controller.dart';
 
 void main() {
   late LoginController loginController;
-  late HomeController homeController;
   WidgetsFlutterBinding.ensureInitialized(); 
   setUpAll(() {
     loginController = LoginController();
@@ -37,7 +34,6 @@ void main() {
   group("Valid Input Fields", () {
     String testEmailValue = 'mikaela@ux.ph';
     String testPasswordValue = 'Password123';
-    //var formKey = GlobalKey<FormState>();
     test("Valid Email", () {
       String? result = loginController.validateEmail(testEmailValue);
       expect(result, null);
@@ -47,18 +43,6 @@ void main() {
       String? result = loginController.validatePassword(testPasswordValue);
       expect(result, null);
     });
-
-    /*test("SAMPLE", () {
-      
-      loginController.emailController.text = testEmailValue;
-      loginController.passwordController.text = testPasswordValue;
-      loginController.doLogin();
-      final homeController = HomeController();
-    
-      expect(homeController.email, testEmailValue);
-      
-
-    });*/
     tearDown(() {});
   });
 

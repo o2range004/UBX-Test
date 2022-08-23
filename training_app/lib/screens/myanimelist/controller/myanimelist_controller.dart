@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -7,7 +5,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:training_app/model/animelistmodel.dart';
 import 'package:training_app/routes/route_list.dart';
-import 'package:training_app/services/api_services.dart';
+import 'package:training_app/services/api_repository.dart';
 
 class MyAnimeListController extends GetxController {
   RxList<Anime> list = <Anime>[].obs;
@@ -15,6 +13,9 @@ class MyAnimeListController extends GetxController {
   final searchTextController = TextEditingController();
   late String searchText;
   final String noResultMessage = "No reuslts found";
+  ApiRepository service;
+
+  MyAnimeListController({required this.service});
 
   @override
   void onInit() {
@@ -22,8 +23,8 @@ class MyAnimeListController extends GetxController {
     super.onInit();
   }
 
-  void doSearch() async {
-    final response = await ApiService().get(
+  Future doSearch() async {
+    /*final response = await ApiService().get(
         path: "https://api.jikan.moe/v4/anime", q: searchTextController.text);
     var body = jsonDecode(response.body);
     if (response.statusCode == 200 &&
@@ -34,7 +35,10 @@ class MyAnimeListController extends GetxController {
     } else {
       isResultempty.value = true;
       list.assignAll([]);
-    }
+    }*/
+    final result = await service.fetchAnime(searchTextController.text);
+    isResultempty.value = result['isResultempty'];
+    list.assignAll(result['list']);
   }
 
   void goToAnimePage(title, synopsis, imageUrl) {
